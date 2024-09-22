@@ -1,4 +1,11 @@
 .mainRegister{
    margin: 150px auto;
-   max-width: 600px;
+   border: 1px solid white;
+   padding: 20px;
+   background-color: white;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   max-height: 250px;
 }
