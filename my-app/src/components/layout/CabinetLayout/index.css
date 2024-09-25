@@ -1,0 +1,9 @@
+.cabinet_layout_container{
+   
+    display: flex;
+    border: 1px solid rgb(33, 173, 192);
+    border-radius: 10px;
+}
+.main_container{    
+    width: 90%;
+}

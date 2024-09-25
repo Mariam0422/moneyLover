@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import {Button, Menu} from 'antd';
 import {DatabaseOutlined, SettingOutlined, CreditCardOutlined} from '@ant-design/icons';
+import "./index.css";
+
 
 const items = [
 {
