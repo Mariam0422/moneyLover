@@ -5,13 +5,40 @@ import three from "../../img/3.svg";
 import four from "../../img/4.svg";
 import five from "../../img/5.svg";
 import six from "../../img/6.svg";
+import data from "../../img/data.svg";
+import users from "../../img/users.svg";
+import reviews from "../../img/reviews.svg";
+import star from "../../img/star.svg";
 import "./index.css";
 
 const { Title, Text } = Typography;
 
 const HomePage = () => {
-    return ( 
-        <div className="description">
+  return (
+    <div>
+      <div className="title">
+        Simple way
+        <br /> to manage personal finances
+      </div>
+      <div className="possibilities">
+        <div className="possSection">
+          <img src={data} alt="data" />
+          <Title level={4}> 100% Secured data </Title>
+        </div>
+        <div className="possSection">
+          <img src={users} alt="users" />
+          <Title level={4}> 1 Million+ users</Title>
+        </div>
+        <div className="possSection">
+          <img src={reviews} alt="reviews" />
+          <Title level={4}> 100K+ 5-star Reviews</Title>
+        </div>
+        <div className="possSection">
+          <img src={star} alt="star" />
+          <Title level={4}> App of the day </Title>
+        </div>
+      </div>
+      <div className="description">
         <Title level={2} style={{ color: "white" }}>
           Features our users love
         </Title>
@@ -96,7 +123,8 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-     );
-}
- 
+    </div>
+  );
+};
+
 export default HomePage;

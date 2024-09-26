@@ -33,7 +33,7 @@ const Register = () => {
    }
     return ( 
         <AuthWrapper coverImg={RegisterImg} maxWidth={600}>
-        <div className="mainRegister" >
+        <div className="mainRegister" style={{padding: "20px"}} >
             <Title level={2} style={{textAlign: "center"}}>Register</Title>
          <Form form={form} layout="vertical" onFinish={handleRegister}>
             {console.log(form, "form")}

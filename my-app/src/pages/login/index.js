@@ -28,22 +28,30 @@ const Login = () => {
     <div className="loginMain">
       <AuthWrapper coverImg={loginImg} maxWidth="600px">
         <h2 style={{ textAlign: "center" }}>Login</h2>
-        <div className="formLogin">
-          <Form form={form} onFinish={handleLogin}>
+        <div className="formLogin" style={{padding: "10px"}}>
+          <Form form={form} onFinish={handleLogin} layout="vertical" >
             <Form.Item name="email" label="Email">
-              <Input style={{ width: "300px" }} />
+              <Input  />
             </Form.Item>
             <Form.Item name="password" label="Password">
-              <Input.Password style={{ width: "300px" }} />
+              <Input.Password />
             </Form.Item>
-            <Form.Item>
-              <Typography.Text underline>
-                <Link to="/register">Create Account</Link>
-              </Typography.Text>
-            </Form.Item>
-            <Form.Item>
-              <Button htmlType="submit">Log in</Button>
-            </Form.Item>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
+            >
+              <Form.Item>
+                <Typography.Text underline>
+                  <Link to="/register">Create Account</Link>
+                </Typography.Text>
+              </Form.Item>
+              <Form.Item>
+                <Button htmlType="submit">Log in</Button>
+              </Form.Item>
+            </div>
           </Form>
         </div>
       </AuthWrapper>
