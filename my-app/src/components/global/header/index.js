@@ -7,8 +7,9 @@ const Header = () => {
   return (
     <Layout.Header>
       <div className="mainHeader">
-        <img src={logo} alt="logo" style={{ width: "40px", height: "40px" }} />
-
+        <Link to="/">
+        <img src={logo} alt="logo" className="img" />
+        </Link>
         <Link to="/login">
           <Button>Login</Button>
         </Link>

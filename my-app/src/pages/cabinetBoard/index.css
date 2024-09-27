@@ -1,0 +1,33 @@
+ .card{
+    width: 380px;
+    height: 200px;
+    border-radius: 20px;
+    background: linear-gradient(100deg, #ff00dd 0%, #ffa3fc 93%);
+    color: white;
+    position: relative;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+.visa{
+    position: absolute;
+    font-size: 40px;
+    font-weight: 550;
+    top: 5px;
+    left: 20px;
+}
+.text{
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    font-size: 35px;
+}
+.cardHolder{
+    position: absolute;
+    top: 140px;
+    left: 25px;
+}
+.term{
+    position: absolute;
+    top: 140px;
+    right: 25px;
+}
