@@ -1,5 +1,4 @@
 
-import { Outlet } from 'react-router-dom';
 import Sidebar from '../../global/sideBar';
 import CabinetBoard from '../../../pages/cabinetBoard';
 import './index.css';
