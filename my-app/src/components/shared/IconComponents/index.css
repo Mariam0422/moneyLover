@@ -1,0 +1,32 @@
+.category{
+    width: 210px;
+    height: 70px; 
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.577);
+    border-radius: 10px;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+.category > img{  
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.666);
+}
+.list{
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+.category p{
+    font-size: 18px;
+    font-weight: 500;
+}
+.category:hover{
+  box-shadow: 3px 4px 5px rgba(87, 87, 87, 0.434);
+}
