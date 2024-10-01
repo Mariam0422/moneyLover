@@ -6,11 +6,11 @@
     width: 380px;
     height: 200px;
     border-radius: 20px;
-    background: linear-gradient(100deg, #ff00dd 0%, #ffa3fc 93%);
+    background: linear-gradient(67deg, #3cd3b9 0%, #adffe4 101%);
     color: white;
     position: relative;
-    margin-top: 50px;
-    margin-left: 50px;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 .visa{
     position: absolute;
@@ -37,7 +37,7 @@
 }
 
 .plusBtn{
-    background: linear-gradient(100deg, #ff00dd 0%, #ffa3fc 93%);
+    background: linear-gradient(67deg, #3cd3b9 0%, #adffe4 101%);
     width: 80px;
     height: 80px;
     border: 1px solid white;
@@ -46,9 +46,7 @@
     color: white;   
 }
 .main{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex;   
 }
 .btnText{
     color: white;
@@ -59,4 +57,12 @@
     display: flex;
     flex-direction: column;  
     align-items: center;
+}
+.story{
+    width: 15%;
+    height: 100vh;
+    background-color: rgba(240, 255, 255, 0.537);
+    position: absolute;
+    top: 0;
+    right: 0;
 }
