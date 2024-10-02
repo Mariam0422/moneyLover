@@ -10,7 +10,7 @@
     color: white;
     position: relative;
     margin-top: 20px;
-    margin-left: 20px;
+   
 }
 .visa{
     position: absolute;
@@ -36,7 +36,7 @@
     right: 25px;
 }
 
-.plusBtn{
+.btn{
     background: linear-gradient(67deg, #3cd3b9 0%, #adffe4 101%);
     width: 80px;
     height: 80px;
@@ -65,4 +65,9 @@
     position: absolute;
     top: 0;
     right: 0;
+}
+.cardButton{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
