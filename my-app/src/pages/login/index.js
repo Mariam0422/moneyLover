@@ -3,9 +3,13 @@ import { auth } from "../../services/firebase";
 import { Button, Form, Input, notification, Typography } from "antd";
 import AuthWrapper from "../../components/shared/AuthWrapper";
 import loginImg from "../../img/loginImg.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ROUTES_CONSTANTS } from "../../routes";
+import { useAuth } from "../../context/AuthContext";
 import "./index.css";
 const Login = () => {
+  const navigate = useNavigate();
+  const { setIsAuth } = useAuth();
   const [form] = Form.useForm();
   const handleLogin = async (values) => {
     const { email, password } = values;
@@ -16,6 +20,8 @@ const Login = () => {
       notification.success({
         message: "Login successful",
       });
+      setIsAuth(true);
+      navigate(ROUTES_CONSTANTS.CABINET)
       form.resetFields();
     } catch (error) {
       console.log(error);

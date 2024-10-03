@@ -1,53 +1,53 @@
-// import { Avatar, Dropdown, Typography, Flex, Divider } from "antd";
-// import { UserOutlined } from "@ant-design/icons";
-// import { signOut } from "firebase/auth";
-// import { auth } from "../../../../services/firebase/firebase";
-// import { getFirstLetters } from "../../../../core/helpers/getFirstLetters";
+import { Flex, Avatar, Typography, Divider, Dropdown } from "antd";
+import { useAuth } from "../../../context/AuthContext";
+import { UserOutlined } from "@ant-design/icons";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../services/firebase";
 
-// const { Text } = Typography;
+const { Text } = Typography;
+const UserProfile = () => {
+  const { setIsAuth } = useAuth();
 
-// const UserProfile = ({ userProfileInfo, setIsAuth }) => {
-//   const { firstName, lastName, headLine, email } = userProfileInfo;
-//   const handleLogout = async () => {
-//     try {
-//       await signOut(auth);
-//       setIsAuth(false);
-//     } catch (e) {
-//       console.log(e, "error");
-//     }
-//   };
-//   const items = [
-//     {
-//       key: "profile",
-//       label: (
-//         <Flex vertical justify="center" align="center">
-//           <Avatar size={64} icon={<UserOutlined />} />
-//           <Text>
-//             {firstName} {lastName}
-//           </Text>
-//           <Text underline>{email}</Text>
-//           <Text type="secondary">{headLine}</Text>
-//           <Divider />
-//         </Flex>
-//       ),
-//     },
-//     {
-//       onClick: handleLogout,
-//       key: "logout",
-//       label: <Text>Logout</Text>,
-//     },
-//   ];
+  const handleLogout = async () => {
+    try {
+      signOut(auth);
+      setIsAuth(false);
+    } catch {
+      console.log("error");
+    }
+  };
 
-//   return (
-//     <Dropdown
-//       menu={{
-//         items,
-//       }}
-//     >
-//       <Avatar size="large">
-//         {getFirstLetters(`${firstName} ${lastName}`)}
-//       </Avatar>
-//     </Dropdown>
-//   );
-// };
-// export default UserProfile;
+  const items = [
+    {
+      key: "profile",
+      label: (
+        <Flex vertical justify="center" align="center">
+          <Avatar size={64} icon={<UserOutlined />} />
+
+          <Text>Mariam Hakobyan</Text>
+
+          <Divider />
+        </Flex>
+      ),
+    },
+    {
+      onClick: handleLogout,
+      key: "logout",
+      label: <Text>Logout</Text>,
+    },
+  ];
+
+  return (
+    <Dropdown 
+        menu={{
+            items
+        }}
+    >
+        <Avatar size="large" style={{backgroundColor: "white", color: "black"}}>
+            MH
+        </Avatar>
+    </Dropdown>
+);
+};
+
+export default UserProfile;

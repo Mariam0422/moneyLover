@@ -1,5 +1,5 @@
-import { Form, Input, Modal, Button } from "antd";
-
+import { Form, Input, Modal, Button, notification } from "antd";
+import { doc, setDoc, db, updateDoc } from "../../../services/firebase";
 const IssueModalForm = ({ visible, setVisible }) => {
   const [form] = Form.useForm();
 
@@ -8,9 +8,26 @@ const IssueModalForm = ({ visible, setVisible }) => {
     form.resetFields();
   };
 
-  const handleCreateIssue = () => {
-    const { cardNumber, cardValidity, CVV, cardHolder } = form.getFieldsValue();
-    
+  const handleCreateIssue = async (value) => {
+    const cardId = Date.now().toString();
+
+    const cardData = {
+      key: cardId,
+      ...value,
+    };
+    try {
+      const createDoc = doc(db, "card", cardId);
+      console.log(cardData, "cardData");
+      await setDoc(createDoc, cardData);
+      notification.success({
+        message: "Your card data has been created",
+      });
+    } catch (error) {
+      console.log("error", error);
+      notification.error({
+        message: "Error ooops :(",
+      });
+    }
     setVisible(false);
     form.resetFields();
   };
@@ -21,7 +38,7 @@ const IssueModalForm = ({ visible, setVisible }) => {
       title="Add new card"
       open={visible}
       centered
-      onOk={form.submit}
+      onCancel={handleCancel}
       footer={[
         <Button key="back" onClick={handleCancel}>
           Return
