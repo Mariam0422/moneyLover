@@ -9,19 +9,19 @@ import { useAuth } from "../../context/AuthContext";
 import "./index.css";
 const Login = () => {
   const navigate = useNavigate();
-  const { setIsAuth } = useAuth();
+  const { setIsAuth, setUserId } = useAuth();
   const [form] = Form.useForm();
   const handleLogin = async (values) => {
     const { email, password } = values;
     try {
       const resp = await signInWithEmailAndPassword(auth, email, password);
-      console.log(resp);
-
+      console.log(resp.user.uid);
+      setUserId(resp.user.uid);
       notification.success({
         message: "Login successful",
       });
       setIsAuth(true);
-      navigate(ROUTES_CONSTANTS.CABINET)
+      navigate(ROUTES_CONSTANTS.CABINET);
       form.resetFields();
     } catch (error) {
       console.log(error);
@@ -34,10 +34,10 @@ const Login = () => {
     <div className="loginMain">
       <AuthWrapper coverImg={loginImg} maxWidth="600px">
         <h2 style={{ textAlign: "center" }}>Login</h2>
-        <div className="formLogin" style={{padding: "10px"}}>
-          <Form form={form} onFinish={handleLogin} layout="vertical" >
+        <div className="formLogin" style={{ padding: "10px" }}>
+          <Form form={form} onFinish={handleLogin} layout="vertical">
             <Form.Item name="email" label="Email">
-              <Input  />
+              <Input />
             </Form.Item>
             <Form.Item name="password" label="Password">
               <Input.Password />

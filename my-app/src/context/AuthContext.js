@@ -1,14 +1,17 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "../services/firebase";
 
-// Создаем контекст
 const AuthContext = createContext();
 
-// Создаем провайдер для контекста
 export const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
+  const [userId, setUserId] = useState(null);
+ 
+  
 
   return (
-    <AuthContext.Provider value={{ isAuth, setIsAuth }}>
+    <AuthContext.Provider value={{ isAuth, setIsAuth, userId, setUserId }}>
       {children}
     </AuthContext.Provider>
   );

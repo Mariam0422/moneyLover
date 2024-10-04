@@ -2,39 +2,7 @@
     margin: 0;
     padding: 0;
  }
- .card{
-    width: 380px;
-    height: 200px;
-    border-radius: 20px;
-    background: linear-gradient(67deg, #3cd3b9 0%, #adffe4 101%);
-    color: white;
-    position: relative;
-    margin-top: 20px;
-   
-}
-.visa{
-    position: absolute;
-    font-size: 40px;
-    font-weight: 550;
-    top: 5px;
-    left: 20px;
-}
-.text{
-    position: absolute;
-    top: 80px;
-    left: 20px;
-    font-size: 35px;
-}
-.cardHolder{
-    position: absolute;
-    top: 140px;
-    left: 25px;
-}
-.term{
-    position: absolute;
-    top: 140px;
-    right: 25px;
-}
+
 
 .btn{
     background: linear-gradient(67deg, #3cd3b9 0%, #adffe4 101%);

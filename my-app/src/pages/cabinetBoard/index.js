@@ -4,6 +4,7 @@ import "./index.css";
 import { useState } from "react";
 
 import IssueModalForm from "../../components/shared/issueModalForm";
+import Card from "../../components/shared/Card";
 
 const CabinetBoard = () => {
   const [visible, setVisible] = useState(false);
@@ -16,14 +17,7 @@ const CabinetBoard = () => {
     <div className="main">
       <div>
         <div className="cardButton">
-          <div className="card">
-            <div className="visa">VISA</div>
-            <div className="text">0000 0000 0000 0000</div>
-            <div className="footer">
-              <div className="cardHolder">Ruben Rubinyan</div>
-              <div className="term">05/28</div>
-            </div>
-          </div>
+          <Card/>
           <div className="btnClass">
             <Button className="btn" onClick={showModal}>
               <span style={{ marginTop: "-7px" }}>+</span>
