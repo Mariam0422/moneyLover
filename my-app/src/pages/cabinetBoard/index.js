@@ -1,31 +1,34 @@
-import { Button  } from "antd";
+import { Button } from "antd";
 import IconComponents from "../../components/shared/IconComponents";
-import "./index.css";
 import { useState } from "react";
-
-import IssueModalForm from "../../components/shared/issueModalForm";
+import CardModalForm from "../../components/shared/cardModalForm";
 import Card from "../../components/shared/Card";
+import "./index.css";
+import ExpensesModalForm from "../../components/shared/expensesModalForm";
 
 const CabinetBoard = () => {
-  const [visible, setVisible] = useState(false);
+  const [visibleCard, setVisibleCard] = useState(false);
+  const [visibleExpenses, setVisibleExpenses] = useState(false);
 
-  const showModal = () => {
-    setVisible(true);
-  }
- 
+  const showCardModal = () => {
+    setVisibleCard(true);
+  };
+  const showExpensesModal = () => {
+    setVisibleExpenses(true);
+  };
   return (
     <div className="main">
       <div>
         <div className="cardButton">
-          <Card/>
+          <Card />
           <div className="btnClass">
-            <Button className="btn" onClick={showModal}>
+            <Button className="btn" onClick={showCardModal}>
               <span style={{ marginTop: "-7px" }}>+</span>
             </Button>
             <p className="btnText">Add new card</p>
           </div>
           <div className="btnClass">
-            <Button className="btn">
+            <Button className="btn" onClick={showExpensesModal}>
               <span style={{ marginTop: "-7px" }}>+</span>
             </Button>
             <p className="btnText">Add new expenses</p>
@@ -34,7 +37,11 @@ const CabinetBoard = () => {
         <IconComponents />
       </div>
       <div className="story"></div>
-      <IssueModalForm visible={visible} setVisible={setVisible}/>
+      <CardModalForm visible={visibleCard} setVisible={setVisibleCard} />
+      <ExpensesModalForm
+        visible={visibleExpenses}
+        setVisible={setVisibleExpenses}
+      />
     </div>
   );
 };

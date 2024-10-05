@@ -1,0 +1,9 @@
+.iconImg{
+    width: 25px;
+    height: 25px;
+}
+.iconSelect{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
