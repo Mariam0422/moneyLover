@@ -4,7 +4,7 @@ import { useAuth } from "../../../context/AuthContext";
 const IssueModalForm = ({ visible, setVisible }) => {
   const [form] = Form.useForm();
   const { userId } = useAuth();
-  console.log(userId, "userId")
+
   const handleCancel = () => {
     setVisible(false);
     form.resetFields();

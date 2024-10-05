@@ -11,12 +11,15 @@ const Card = () => {
     const ref = doc(db, "registerUsers", userId);
     const unsubscribe = onSnapshot(ref, (docSnapshot) => {
       const card = docSnapshot.data().card;
-      const { cardNumber, cardValidity, cardHolder } = card;
-      setCardData({
-        cardNumber: cardNumber,
-        cardValidity: cardValidity,
-        cardHolder: cardHolder,
-      });
+      if(card){
+        const { cardNumber, cardValidity, cardHolder } = card;
+        setCardData({
+          cardNumber: cardNumber,
+          cardValidity: cardValidity,
+          cardHolder: cardHolder,
+        });
+      }
+      
     });
  
     return () => unsubscribe();
@@ -36,10 +39,10 @@ const Card = () => {
   return (
     <div className="card">
       <div className="visa">VISA</div>
-      <div className="text">{cardData.cardNumber ? changeFormat(cardData.cardNumber) : ""}</div>
+      <div className="text">{cardData.cardNumber ? changeFormat(cardData.cardNumber) : "0000 0000 0000 0000"}</div>
       <div className="footer">
-        <div className="cardHolder">{cardData.cardHolder}</div>
-        <div className="term">{cardData.cardValidity}</div>
+        <div className="cardHolder">{ cardData.cardHolder ? cardData.cardHolder : "Name Surname"}</div>
+        <div className="term">{cardData.cardValidity ? cardData.cardValidity : "00/00"}</div>
       </div>
     </div>
   );

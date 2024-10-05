@@ -1,20 +1,51 @@
 import { Flex, Avatar, Typography, Divider, Dropdown } from "antd";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import { UserOutlined } from "@ant-design/icons";
 import { signOut } from "firebase/auth";
+import { doc, db, getDoc } from "../../../services/firebase";
+import { ROUTES_CONSTANTS } from "../../../routes";
 import { auth } from "../../../services/firebase";
+import { useEffect, useState } from "react";
 
 const { Text } = Typography;
 const UserProfile = () => {
-  const { setIsAuth } = useAuth();
+  const navigate = useNavigate();
+  const { setIsAuth, userId } = useAuth();
+  const [name, setName] = useState({});
 
   const handleLogout = async () => {
     try {
       signOut(auth);
+      navigate(ROUTES_CONSTANTS.LOGIN);
       setIsAuth(false);
     } catch {
       console.log("error");
     }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const ref = doc(db, "registerUsers", userId);
+      const data = await getDoc(ref);
+      const userData = data.data();
+      const { firstName, lastName } = userData;
+      setName({
+        firstName: firstName,
+        lastName: lastName,
+      });
+    };
+    fetchData();
+  }, []);
+
+  const getFirstLetters = (obj) => {
+    let result = [];
+    for (const key in obj) {
+      const firstLetter = obj[key].split("");
+      console.log(firstLetter, "firstLetter")
+      result.push(firstLetter[0]);
+    }
+    return result.join("");
   };
 
   const items = [
@@ -23,9 +54,9 @@ const UserProfile = () => {
       label: (
         <Flex vertical justify="center" align="center">
           <Avatar size={64} icon={<UserOutlined />} />
-
-          <Text>Mariam Hakobyan</Text>
-
+          <Text>
+            {name.firstName} {name.lastName}
+          </Text>
           <Divider />
         </Flex>
       ),
@@ -38,16 +69,17 @@ const UserProfile = () => {
   ];
 
   return (
-    <Dropdown 
-        menu={{
-            items
-        }}
+    <Dropdown
+      menu={{
+        items,
+      }}
     >
-        <Avatar size="large" style={{backgroundColor: "white", color: "black"}}>
-            MH
-        </Avatar>
+      <Avatar size="large" style={{ backgroundColor: "white", color: "black" }}>
+        {console.log(name, "name")}
+        {getFirstLetters(name)}
+      </Avatar>
     </Dropdown>
-);
+  );
 };
 
 export default UserProfile;
