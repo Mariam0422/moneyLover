@@ -42,7 +42,7 @@ const UserProfile = () => {
     let result = [];
     for (const key in obj) {
       const firstLetter = obj[key].split("");
-      console.log(firstLetter, "firstLetter")
+     
       result.push(firstLetter[0]);
     }
     return result.join("");
@@ -75,7 +75,7 @@ const UserProfile = () => {
       }}
     >
       <Avatar size="large" style={{ backgroundColor: "white", color: "black" }}>
-        {console.log(name, "name")}
+  
         {getFirstLetters(name)}
       </Avatar>
     </Dropdown>

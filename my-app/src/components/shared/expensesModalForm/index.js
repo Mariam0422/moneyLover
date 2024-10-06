@@ -1,11 +1,14 @@
-import { Form, Modal, Button, Input, Select, DatePicker } from "antd";
+import { Form, Modal, Button, Input, Select, DatePicker, notification } from "antd";
 import { useState } from "react";
 import { icomItems } from "../../../constants/iconItems";
+import {db, setDoc, doc, updateDoc, arrayUnion} from "../../../services/firebase";
+import { useAuth } from "../../../context/AuthContext";
 import "./index.css";
 
 const ExpensesModalForm = ({ visible, setVisible }) => {
   const [form] = Form.useForm();
   const [date, setDate] = useState("");
+  const { userId } = useAuth();
 
   const handleChangeDate = (date, dateString) => {
     setDate(dateString);
@@ -14,7 +17,37 @@ const ExpensesModalForm = ({ visible, setVisible }) => {
     setVisible(false);
     form.resetFields();
   };
-  const handleCreateExpenses = async () => {};
+ const handleUpdateUserExpenses = async (buyId, userId) => {
+   const docRef = doc(db, "registerUsers", userId);
+   await updateDoc(docRef , {
+    buy: arrayUnion(buyId)
+   })
+
+ }
+  const handleCreateExpenses = async (values) => {
+    const buyId = Date.now().toString();
+
+    const expensesData = {
+      key: buyId,
+      ...values,
+      date: date,
+    };
+    try {
+      const createDoc = doc(db, "expensesData", buyId);
+      await setDoc(createDoc, expensesData);
+      handleUpdateUserExpenses(buyId, userId);
+      notification.success({
+        message: "Your expenses have been added",
+      });
+      form.resetFields();
+      setVisible(false);
+    } catch {
+      console.log("error");
+      notification.error({
+        message: "Error ooops :(",
+      });
+    }
+  };
   return (
     <Modal
       width={500}
@@ -31,28 +64,32 @@ const ExpensesModalForm = ({ visible, setVisible }) => {
         </Button>,
       ]}
     >
-      <Form form={form} onFieldsChange={handleCreateExpenses} layout="vertical">
+      <Form form={form} onFinish={handleCreateExpenses} layout="vertical">
         <Form.Item name="sum" label="Sum">
           <Input />
         </Form.Item>
         <Form.Item name="date" label="Select Date">
           <DatePicker onChange={handleChangeDate} style={{ width: "450px" }} />
         </Form.Item>
-    
-      <Form.Item name="selectCategory" label="Select Category">
-        <Select optionLabelProp="label">
-          {icomItems.map((item) => {
-            return (
-              <Select.Option value={item.value} label={item.label}>
-                <div className="iconSelect">
-                  <img className="iconImg" src={item.img} alt="item" />{" "}
-                  {item.label}
-                </div>
-              </Select.Option>
-            );
-          })}
-        </Select>
-      </Form.Item>
+
+        <Form.Item name="selectCategory" label="Select Category">
+          <Select optionLabelProp="label">
+            {icomItems.map((item, index) => {
+              return (
+                <Select.Option
+                  value={item.value}
+                  label={item.label}
+                  key={index}
+                >
+                  <div className="iconSelect">
+                    <img className="iconImg" src={item.img} alt="item" />{" "}
+                    {item.label}
+                  </div>
+                </Select.Option>
+              );
+            })}
+          </Select>
+        </Form.Item>
       </Form>
     </Modal>
   );

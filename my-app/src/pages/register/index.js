@@ -41,7 +41,7 @@ const Register = () => {
         <div className="mainRegister" style={{padding: "20px"}} >
             <Title level={2} style={{textAlign: "center"}}>Register</Title>
          <Form form={form} layout="vertical" onFinish={handleRegister}>
-            {console.log(form, "form")}
+   
          <Form.Item name="firstName" label= "First Name">
             <Input/>
          </Form.Item>

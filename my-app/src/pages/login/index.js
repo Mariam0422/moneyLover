@@ -15,7 +15,7 @@ const Login = () => {
     const { email, password } = values;
     try {
       const resp = await signInWithEmailAndPassword(auth, email, password);
-      console.log(resp.user.uid);
+    
       setUserId(resp.user.uid);
       notification.success({
         message: "Login successful",
