@@ -1,6 +1,6 @@
-import { getFirestore, setDoc, getDoc, getDocs, doc, collection, updateDoc, onSnapshot, arrayUnion} from "firebase/firestore";
+import { getFirestore, setDoc, getDoc, doc, updateDoc, onSnapshot, arrayUnion} from "firebase/firestore";
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBRJK9L7Ae0v6zy0ubxx2-9KVo3sB4QyS8",

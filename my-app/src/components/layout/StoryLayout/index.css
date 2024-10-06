@@ -1,0 +1,25 @@
+.story{
+    height: 100vh;
+    background-color: rgba(227, 227, 222, 0.547);
+    padding: 0 20px 0 20px;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+
+.block{
+    background-color: rgba(255, 255, 255, 0.808);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 30px;
+}
+.block p {
+    font-weight: 700;
+}
+h3{
+    margin: 5px 0;
+}

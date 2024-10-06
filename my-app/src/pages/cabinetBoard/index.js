@@ -5,6 +5,7 @@ import CardModalForm from "../../components/shared/cardModalForm";
 import Card from "../../components/shared/Card";
 import "./index.css";
 import ExpensesModalForm from "../../components/shared/expensesModalForm";
+import StoryLayout from "../../components/layout/StoryLayout";
 
 const CabinetBoard = () => {
   const [visibleCard, setVisibleCard] = useState(false);
@@ -36,7 +37,7 @@ const CabinetBoard = () => {
         </div>
         <IconComponents />
       </div>
-      <div className="story"></div>
+      
       <CardModalForm visible={visibleCard} setVisible={setVisibleCard} />
       <ExpensesModalForm
         visible={visibleExpenses}
