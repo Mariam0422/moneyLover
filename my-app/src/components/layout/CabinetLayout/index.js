@@ -1,5 +1,5 @@
 import CabinetBoard from "../../../pages/cabinetBoard";
-import StoryLayout from "../StoryLayout";
+import StoryLayout from "../Story";
 import "./index.css";
 
 const CabinetLayout = () => {
@@ -7,7 +7,7 @@ const CabinetLayout = () => {
     <div className="cabinet_layout_container">
       <main className="main_container">
         <CabinetBoard />
-        <StoryLayout/>
+        <StoryLayout />
       </main>
     </div>
   );

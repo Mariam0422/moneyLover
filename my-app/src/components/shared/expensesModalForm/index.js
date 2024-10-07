@@ -31,6 +31,7 @@ const ExpensesModalForm = ({ visible, setVisible }) => {
       key: buyId,
       ...values,
       date: date,
+      userId: userId
     };
     try {
       const createDoc = doc(db, "expensesData", buyId);
@@ -72,7 +73,7 @@ const ExpensesModalForm = ({ visible, setVisible }) => {
           <DatePicker onChange={handleChangeDate} style={{ width: "450px" }} />
         </Form.Item>
 
-        <Form.Item name="selectCategory" label="Select Category">
+        <Form.Item name="category" label="Select Category">
           <Select optionLabelProp="label">
             {icomItems.map((item, index) => {
               return (

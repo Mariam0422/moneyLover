@@ -4,6 +4,7 @@
     padding: 0 20px 0 20px;
     text-align: center;
     font-family: sans-serif;
+    overflow-y: auto;
 }
 
 
@@ -16,6 +17,7 @@
     justify-content: center;
     align-items: center;
     line-height: 30px;
+    margin-top: 10px;
 }
 .block p {
     font-weight: 700;
