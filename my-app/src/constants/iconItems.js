@@ -46,7 +46,7 @@ export const icomItems = [
     },
     {
         value: "phone",
-        label: "Phone",
+        label: "Phone Bills",
         img:  phone
     },
     {

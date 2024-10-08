@@ -18,10 +18,16 @@
     align-items: center;
     line-height: 30px;
     margin-top: 10px;
+    position: relative;
 }
 .block p {
     font-weight: 700;
 }
 h3{
     margin: 5px 0;
+}
+.btnRemove{
+position: absolute;
+top: 5px;
+right: 5px;
 }

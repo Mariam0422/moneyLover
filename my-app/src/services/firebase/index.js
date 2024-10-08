@@ -1,4 +1,17 @@
-import { getFirestore, setDoc, getDoc, doc, updateDoc, onSnapshot, arrayUnion, getDocs, collection, query, where} from "firebase/firestore";
+import {
+  getFirestore,
+  setDoc,
+  getDoc,
+  doc,
+  updateDoc,
+  onSnapshot,
+  arrayUnion,
+  getDocs,
+  collection,
+  query,
+  where,
+  deleteDoc
+} from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
@@ -9,12 +22,25 @@ const firebaseConfig = {
   storageBucket: "moneylover-3d638.appspot.com",
   messagingSenderId: "603285467121",
   appId: "1:603285467121:web:3befd1454d24d06e271e50",
-  measurementId: "G-QCCNZ8HM43"
+  measurementId: "G-QCCNZ8HM43",
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 export {
-    app, auth, db,  setDoc, getDoc, doc, onSnapshot, updateDoc, arrayUnion, getDocs, collection, query, where
-}
+  app,
+  auth,
+  db,
+  setDoc,
+  getDoc,
+  doc,
+  onSnapshot,
+  updateDoc,
+  arrayUnion,
+  getDocs,
+  collection,
+  query,
+  where,
+  deleteDoc
+};

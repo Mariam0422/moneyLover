@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { AuthProvider } from "./context/AuthContext";
 import {
   Route,
   createBrowserRouter,
@@ -11,7 +9,9 @@ import Login from "./pages/login";
 import Header from "./components/global/header";
 import CabinetLayout from "./components/layout/CabinetLayout";
 import HomePage from "./pages/homePage";
+import { useAuth } from "./context/AuthContext";
 import "./App.css";
+
 
 const route = createBrowserRouter(
   createRoutesFromElements(
@@ -23,13 +23,13 @@ const route = createBrowserRouter(
     </Route>
   )
 );
-function App() {
-  return (
-    <AuthProvider>
+const App = () => { 
+  const { isAuth } = useAuth();
+  console.log(isAuth, "isAuth")
+  return (   
       <div className="App">
         <RouterProvider router={route} />
-      </div>
-    </AuthProvider>
+      </div>    
   );
 }
 

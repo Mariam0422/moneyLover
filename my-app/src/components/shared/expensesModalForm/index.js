@@ -67,7 +67,11 @@ const ExpensesModalForm = ({ visible, setVisible }) => {
     >
       <Form form={form} onFinish={handleCreateExpenses} layout="vertical">
         <Form.Item name="sum" label="Sum">
-          <Input />
+          <Input 
+           onInput={(e) =>
+            (e.target.value = e.target.value.replace(/\D/g, ""))
+          }
+          />
         </Form.Item>
         <Form.Item name="date" label="Select Date">
           <DatePicker onChange={handleChangeDate} style={{ width: "450px" }} />
