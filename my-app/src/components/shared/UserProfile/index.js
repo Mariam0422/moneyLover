@@ -23,7 +23,9 @@ const UserProfile = () => {
       console.log("error");
     }
   };
-
+  const handleCabinet = () => {
+    navigate(ROUTES_CONSTANTS.CABINET)
+  }
   useEffect(() => {
     const fetchData = async () => {
       const ref = doc(db, "registerUsers", userId);
@@ -62,10 +64,16 @@ const UserProfile = () => {
       ),
     },
     {
+      onClick: handleCabinet,
+      key: "cabinet",
+      label: <Text>Cabinet</Text>,
+    },
+    {
       onClick: handleLogout,
       key: "logout",
       label: <Text>Logout</Text>,
     },
+   
   ];
 
   return (

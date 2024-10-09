@@ -29,8 +29,13 @@
     align-items: center;
 }
 
-.cardButton{
+.boardHeader{
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
+/* .graphics{
+    width: 30%;
+    height: 250px;
+    border:  1px solid black;
+} */
