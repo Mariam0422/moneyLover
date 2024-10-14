@@ -32,10 +32,15 @@
 .boardHeader{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    gap: 20px;
 }
-/* .graphics{
-    width: 30%;
-    height: 250px;
-    border:  1px solid black;
-} */
+.boardHeader > img {
+    width: 200px;
+}
+.graphics_container{
+    flex: 1;
+    max-width: 600px;
+    width: 100%;
+    overflow: hidden;
+}
