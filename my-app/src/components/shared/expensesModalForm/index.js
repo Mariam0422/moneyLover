@@ -3,12 +3,14 @@ import { useState } from "react";
 import { icomItems } from "../../../constants/iconItems";
 import {db, setDoc, doc, updateDoc, arrayUnion} from "../../../services/firebase";
 import { useAuth } from "../../../context/AuthContext";
+import { useExpenses } from "../../../context/ExpensesContext";
 import "./index.css";
 
 const ExpensesModalForm = ({ visible, setVisible }) => {
   const [form] = Form.useForm();
   const [date, setDate] = useState("");
   const { userId } = useAuth();
+  const { addExpense } = useExpenses();
 
   const handleChangeDate = (date, dateString) => {
     setDate(dateString);
@@ -37,6 +39,7 @@ const ExpensesModalForm = ({ visible, setVisible }) => {
       const createDoc = doc(db, "expensesData", buyId);
       await setDoc(createDoc, expensesData);
       handleUpdateUserExpenses(buyId, userId);
+      addExpense({date, sum: values.sum})
       notification.success({
         message: "Your expenses have been added",
       });

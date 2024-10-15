@@ -1,9 +1,17 @@
 import React from "react";
 import CanvasJSReact from "@canvasjs/react-charts"; 
+import { useExpenses } from "../context/ExpensesContext";
 import "./index.css";
+
 const CanvasJSChart = CanvasJSReact.CanvasJSChart; 
 
 const Chart = () => {
+  const { expenses } = useExpenses();
+  const dataPoints = expenses.map((expense) =>( {
+    x: new Date(expense.date),
+    y: parseFloat(expense.sum)
+  }))
+  console.log(dataPoints, "data/")
   const options = {
     animationEnabled: true,
     theme: "light2",
@@ -13,8 +21,8 @@ const Chart = () => {
       margin: 20
     },
     axisX: {
-      valueFormatString: "DD MMM",
-      crosshair: {
+      valueFormatString: "YYYY-MM-DD",
+       crosshair: {
         enabled: true,
         snapToDataPoint: true,
       },
@@ -34,16 +42,7 @@ const Chart = () => {
         type: "area",
         xValueFormatString: "DD MMM",
         yValueFormatString: " ֏#, ##0",
-        dataPoints: [
-          { x: new Date("2018-03-01"), y: 20000 },
-          { x: new Date("2018-03-02"), y: 120000 },
-          { x: new Date("2018-03-03"), y: 50000 },
-          { x: new Date("2018-03-04"), y: 32000 },
-          { x: new Date("2018-03-05"), y: 24000 },
-          { x: new Date("2018-03-06"), y: 56000 },
-          { x: new Date("2018-03-07"), y: 84000 },
-   
-        ],
+        dataPoints: dataPoints
       },
     ],
   };
