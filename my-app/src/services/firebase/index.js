@@ -10,7 +10,8 @@ import {
   collection,
   query,
   where,
-  deleteDoc
+  deleteDoc,
+  arrayRemove
 } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
@@ -42,5 +43,6 @@ export {
   collection,
   query,
   where,
-  deleteDoc
+  deleteDoc,
+  arrayRemove
 };

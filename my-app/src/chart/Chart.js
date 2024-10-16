@@ -7,11 +7,12 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const Chart = () => {
   const { expenses } = useExpenses();
+
   const dataPoints = expenses.map((expense) =>( {
     x: new Date(expense.date),
     y: parseFloat(expense.sum)
   }))
-  console.log(dataPoints, "data/")
+ 
   const options = {
     animationEnabled: true,
     theme: "light2",

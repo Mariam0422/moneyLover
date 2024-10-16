@@ -1,44 +1,29 @@
-import { useEffect, useState } from "react";
+
 import {
   db,
-  collection,
-  query,
-  where,
-  onSnapshot,
   deleteDoc, 
-  doc
+  doc,
+  arrayRemove,
+  updateDoc
 } from "../../../services/firebase";
 import { useAuth } from "../../../context/AuthContext";
 import { Button } from "antd";
 import "./index.css";
+import { useExpenses } from "../../../context/ExpensesContext";
 
 const StoryLayout = () => {
   const { userId } = useAuth();
-  const [expenses, setExpenses] = useState([]);
-  useEffect(() => {
-    const q = query(
-      collection(db, "expensesData"),
-      where("userId", "==", userId)
-    );
-
-    const unsubscribe = onSnapshot(
-      q,
-      (querySnapshot) => {
-        const expensesList = querySnapshot.docs.map((doc) => doc.data());
-        setExpenses(expensesList);
-      },
-      (error) => {
-        console.error("Error", error);
-      }
-    );
-
-    return () => unsubscribe();
-  }, [userId]);
-
+  const { expenses } = useExpenses();
+ console.log(expenses, "expenses");
+ 
   const handleDelete = async (id) => {
   try{
     await deleteDoc(doc(db, "expensesData", id));
-    console.log("successfull deleted");    
+    const userDocRef = doc(db, "registerUsers", userId);
+    await updateDoc(userDocRef, {
+      buy: arrayRemove(id)
+    })
+      
   }
   catch{
    console.log("error");

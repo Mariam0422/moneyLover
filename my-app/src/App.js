@@ -24,8 +24,7 @@ const route = createBrowserRouter(
   )
 );
 const App = () => { 
-  const { isAuth } = useAuth();
-  console.log(isAuth, "isAuth")
+  
   return (   
       <div className="App">
         <RouterProvider router={route} />

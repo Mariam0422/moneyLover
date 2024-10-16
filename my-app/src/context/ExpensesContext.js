@@ -1,16 +1,30 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
+import { db, collection, query, where, onSnapshot } from "../services/firebase";
+import { useAuth } from "./AuthContext";
 
 const ExpensesContext = createContext();
 
 export const ExpensesProvider = ({ children }) => {
   const [expenses, setExpenses] = useState([]);
+  const { userId } = useAuth();
 
-  const addExpense = (expense) => {
-    setExpenses((prevExpenses) => [...prevExpenses, expense]);
-  };
+  useEffect(() => {
+    if(!userId) return;
+
+    const q = query(collection(db, "expensesData"), where ("userId", "==", userId));
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const expensesList = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        key: doc.id
+      }))
+      setExpenses(expensesList)
+    });
+    return () => unsubscribe();
+  }, [userId])
 
   return (
-    <ExpensesContext.Provider value={{ expenses, addExpense }}>
+    <ExpensesContext.Provider value={{ expenses, setExpenses }}>
       {children}
     </ExpensesContext.Provider>
   );

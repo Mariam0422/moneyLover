@@ -10,7 +10,7 @@ const ExpensesModalForm = ({ visible, setVisible }) => {
   const [form] = Form.useForm();
   const [date, setDate] = useState("");
   const { userId } = useAuth();
-  const { addExpense } = useExpenses();
+  const {expenses, setExpenses } = useExpenses();
 
   const handleChangeDate = (date, dateString) => {
     setDate(dateString);
@@ -29,17 +29,28 @@ const ExpensesModalForm = ({ visible, setVisible }) => {
   const handleCreateExpenses = async (values) => {
     const buyId = Date.now().toString();
 
-    const expensesData = {
+    const newExpense = {
       key: buyId,
       ...values,
       date: date,
+      sum: parseFloat(values.sum),
       userId: userId
     };
     try {
       const createDoc = doc(db, "expensesData", buyId);
-      await setDoc(createDoc, expensesData);
+      await setDoc(createDoc, newExpense);
       handleUpdateUserExpenses(buyId, userId);
-      addExpense({date, sum: values.sum})
+      const existingExpense = expenses.find((expense) => expense.date === date);
+      let updatedExpenses;
+      if(existingExpense){
+        updatedExpenses = expenses.map((expense) => expense.date === date
+      ? {...expense, sum: expense.sum + parseFloat(values.sum), category: `${expense.category}, ${values.category}`} : expense)
+      }
+      else{
+       updatedExpenses = [...expenses, newExpense]
+      }
+      setExpenses(updatedExpenses);
+
       notification.success({
         message: "Your expenses have been added",
       });
