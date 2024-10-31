@@ -16,10 +16,12 @@ const CabinetBoard = () => {
     <div className="main">
       <div>
         <div className="boardHeader">
-          <img src={wallet} alt="wallet" />
-
+          <div style={{textAlign: "center"}}>
+            <img src={wallet} alt="wallet" style={{ width: "150px" }} />
+            <p style={{fontSize: "20px", fontWeight: "500"}}>Payment Method Cash</p>
+          </div>
           <div className="graphics_container">
-           <Chart/>
+            <Chart />
           </div>
 
           <div className="btnClass">
@@ -28,7 +30,6 @@ const CabinetBoard = () => {
             </Button>
             <p className="btnText">Add new expenses</p>
           </div>
-          
         </div>
         <IconComponents />
       </div>
